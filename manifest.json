@@ -6,11 +6,13 @@
     {
       "src": "/video-framer/images/android-chrome-192x192.png",
       "sizes": "192x192",
+      "purpose": "maskable",
       "type": "image/png"
     },
     {
       "src": "/video-framer/images/android-chrome-512x512.png",
       "sizes": "512x512",
+      "purpose": "maskable",
       "type": "image/png"
     }
   ],
