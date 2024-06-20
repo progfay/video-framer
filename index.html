@@ -56,6 +56,7 @@
                 const app = document.getElementById("app");
                 const video = document.createElement("video");
                 video.src = URL.createObjectURL(videoBlob);
+                app.appendChild(video);
                 return;
               }
 
