@@ -72,7 +72,9 @@ if ("serviceWorker" in navigator) {
           app.replaceChildren(canvas);
           render(frames[0]);
         };
-        video.play();
+        video.play().catch(() => {
+          video.controls = true;
+        });
         return;
       }
 
