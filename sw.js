@@ -33,17 +33,17 @@ self.addEventListener("fetch", function (e) {
     e.request.url.startsWith(`${location.origin}/video-framer/share`)
   ) {
     e.respondWith(
-      Response.redirect(`${location.origin}/video-framer/index.html`)
+      Response.redirect(`${location.origin}/video-framer/index.html`),
     );
     e.waitUntil(
       (async function () {
         const data = await e.request.formData();
         const client = await self.clients.get(
-          e.resultingClientId || e.clientId
+          e.resultingClientId || e.clientId,
         );
         const file = data.get("file");
         client.postMessage({ file, action: "share-video" });
-      })()
+      })(),
     );
     return;
   }
