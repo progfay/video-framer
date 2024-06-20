@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Video Framer</title>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/video-framer/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/video-framer/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/video-framer/images/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/video-framer/manifest.json" />
+    <meta name="theme-color" content="#dddddd" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Video Frame Viewer" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app"></div>
+    <script>
+      "use strict";
+
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/video-framer/sw.js")
+          .then((registration) => {
+            console.debug(
+              "ServiceWorker registration successful with scope:",
+              registration.scope
+            );
+          })
+          .catch((err) => {
+            console.error("ServiceWorker registration failed:", err);
+          });
+
+          navigator.serviceWorker.onmessage = function(event) {
+            switch (event.action) {
+              case "share-video": {
+                const videoBlob = event.data.file;
+                const app = document.getElementById("app");
+                const video = document.createElement("video");
+                video.src = URL.createObjectURL(videoBlob);
+                return;
+              }
+
+              default: {
+                console.error("unknown event action received:", event.action);
+              }
+            }
+          };
+      }
+    </script>
+    <noscript>
+      For full functionality of this site it is necessary to enable JavaScript.
+      Here are the
+      <a href="https://www.enable-javascript.com/">
+        instructions how to enable JavaScript in your web browser</a
+      >.
+    </noscript>
+  </body>
+</html>
