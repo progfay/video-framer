@@ -43,7 +43,7 @@ if ("serviceWorker" in navigator) {
 
           let index = 0;
           canvas.onclick = (e) => {
-            const ratio = (e.clientX * 100) / canvas.width;
+            const ratio = (e.clientX * 100) / canvas.clientWidth;
             const position =
               ratio < 30 ? "left" : ratio < 70 ? "center" : "right";
             console.log({ index, position });
