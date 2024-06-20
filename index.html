@@ -50,7 +50,7 @@
           });
 
           navigator.serviceWorker.onmessage = function(event) {
-            switch (event.action) {
+            switch (event.data.action) {
               case "share-video": {
                 const videoBlob = event.data.file;
                 const app = document.getElementById("app");
@@ -60,7 +60,7 @@
               }
 
               default: {
-                console.error("unknown event action received:", event.action);
+                console.error("unknown event action received:", event.data.action);
               }
             }
           };
