@@ -36,14 +36,14 @@ self.addEventListener("fetch", function (e) {
       Response.redirect(`${location.origin}/video-framer/index.html`),
     );
     e.waitUntil(
-      (async function () {
+      Promise.resolve().then(async () => {
         const data = await e.request.formData();
         const client = await self.clients.get(
           e.resultingClientId || e.clientId,
         );
         const file = data.get("file");
         client.postMessage({ file, action: "share-video" });
-      })(),
+      }),
     );
     return;
   }
