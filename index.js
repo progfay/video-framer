@@ -21,6 +21,7 @@ if ("serviceWorker" in navigator) {
         const video = document.createElement("video");
         video.id = "video";
         video.src = URL.createObjectURL(videoBlob);
+        video.playsInline = true;
         app.replaceChildren(video);
         const frames = [];
         const loop = async () => {
