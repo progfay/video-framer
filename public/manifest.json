@@ -20,7 +20,7 @@
   "background_color": "#dddddd",
   "scope": "/video-framer/",
   "display": "fullscreen",
-  "orientation": "portrait",
+  "orientation": "any",
   "share_target": {
     "action": "/video-framer/",
     "method": "GET",
