@@ -11,7 +11,7 @@ export const PlayerState = {
 export function isYouTubeUrl(input: string): boolean {
   try {
     const url = new URL(input.trim())
-    const host = url.hostname.replace(/^www\./, '')
+    const host = url.hostname.replace(/^(www|m)\./, '')
     return host === 'youtube.com' || host === 'youtu.be'
   } catch {
     return false
@@ -21,7 +21,7 @@ export function isYouTubeUrl(input: string): boolean {
 export function extractVideoId(input: string): string | null {
   try {
     const url = new URL(input.trim())
-    const host = url.hostname.replace(/^www\./, '')
+    const host = url.hostname.replace(/^(www|m)\./, '')
     if (host === 'youtu.be') {
       const id = url.pathname.slice(1).split('/')[0]
       return /^[\w-]{11}$/.test(id) ? id : null
