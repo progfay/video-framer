@@ -1,4 +1,5 @@
 import { useYouTubePlayer } from '../hooks/useYouTubePlayer'
+import styles from './Player.module.css'
 
 const PLAYER_CONTAINER_ID = 'yt-player'
 
@@ -31,17 +32,17 @@ export default function Player({
   }
 
   return (
-    <div className="player-wrapper">
-      <div id={PLAYER_CONTAINER_ID} />
+    <div className={styles.wrapper}>
+      <div id={PLAYER_CONTAINER_ID} className={styles.ytPlayer} />
 
       {/* Zone overlay */}
-      <div className="zone-overlay">
-        {mode === 'init' && <div className="zone zone-full" onClick={play} />}
+      <div className={styles.zoneOverlay}>
+        {mode === 'init' && <div className={styles.zone} onClick={play} />}
         {mode === 'view' && (
           <>
-            <div className="zone zone-left" onClick={() => stepFrame(-1, fps)} />
-            <div className="zone zone-center" onClick={() => onModeChange('control')} />
-            <div className="zone zone-right" onClick={() => stepFrame(1, fps)} />
+            <div className={styles.zone} onClick={() => stepFrame(-1, fps)} />
+            <div className={styles.zone} onClick={() => onModeChange('control')} />
+            <div className={styles.zone} onClick={() => stepFrame(1, fps)} />
           </>
         )}
       </div>
@@ -49,11 +50,11 @@ export default function Player({
       {/* Controls overlay: control mode only */}
       {mode === 'control' && (
         <div
-          className="controls-overlay"
+          className={styles.controlsOverlay}
           onClick={() => onModeChange('view')}
         >
           <button
-            className="play-pause-center-btn"
+            className={styles.playPauseCenterBtn}
             onClick={(e) => {
               e.stopPropagation()
               isPlaying ? pause() : play()
@@ -63,10 +64,10 @@ export default function Player({
           </button>
 
           <div
-            className="controls-bar"
+            className={styles.controlsBar}
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="controls-row">
+            <div className={styles.controlsRow}>
               <input
                 ref={(el) => {
                   if (!el) return
@@ -79,7 +80,7 @@ export default function Player({
                   rafId = requestAnimationFrame(loop)
                   return () => cancelAnimationFrame(rafId)
                 }}
-                className="seek-bar"
+                className={styles.seekBar}
                 type="range"
                 min={0}
                 max={1}
@@ -88,7 +89,7 @@ export default function Player({
                 onChange={handleSeek}
               />
               <button
-                className="fps-toggle-btn"
+                className={styles.fpsToggleBtn}
                 onClick={() => onFpsChange(fps === 30 ? 60 : 30)}
               >
                 1/{fps}s

@@ -1,0 +1,111 @@
+.wrapper {
+  height: 100%;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.ytPlayer {
+  width: 100%;
+  height: 100%;
+}
+
+/* YouTube replaces #yt-player with an iframe */
+.wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Zone overlay */
+
+.zoneOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  z-index: 10;
+}
+
+.zone {
+  flex: 1;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Controls overlay */
+
+.controlsOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+}
+
+.playPauseCenterBtn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.playPauseCenterBtn:hover {
+  background: rgba(0, 0, 0, 0.7);
+  border-color: #fff;
+}
+
+.controlsBar {
+  flex-shrink: 0;
+  padding: 12px 16px 20px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.seekBar {
+  flex: 1;
+  height: 4px;
+  accent-color: #ff0000;
+  cursor: pointer;
+}
+
+.fpsToggleBtn {
+  flex-shrink: 0;
+  padding: 4px 10px;
+  background: transparent;
+  border: 1px solid #666;
+  border-radius: 4px;
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fpsToggleBtn:hover {
+  border-color: #aaa;
+  color: #fff;
+}

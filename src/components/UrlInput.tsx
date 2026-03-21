@@ -1,4 +1,5 @@
 import { isYouTubeUrl } from '../utils/youtube'
+import styles from './UrlInput.module.css'
 
 interface UrlInputProps {
   onSubmit: (videoUrl: string) => void
@@ -20,9 +21,9 @@ export default function UrlInput({ onSubmit }: UrlInputProps) {
   }
 
   return (
-    <div className="url-input-screen">
-      <h1 className="app-title">Video Framer</h1>
-      <form className="url-input-form" onSubmit={handleSubmit}>
+    <div className={styles.screen}>
+      <h1 className={styles.title}>Video Framer</h1>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <input
           name="url"
           type="text"
