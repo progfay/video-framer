@@ -24,8 +24,11 @@ export default function Player({
   onFpsChange,
   onStateChange,
 }: PlayerProps) {
-  const { play, pause, seekTo, stepFrame, getCurrentTime, getDuration } =
-    useYouTubePlayer({ containerId: PLAYER_CONTAINER_ID, videoUrl, onStateChange })
+  const { play, pause, seekTo, stepFrame, getCurrentTime, getDuration } = useYouTubePlayer({
+    containerId: PLAYER_CONTAINER_ID,
+    videoUrl,
+    onStateChange,
+  })
 
   function handleSeek(e: React.ChangeEvent<HTMLInputElement>) {
     seekTo(parseFloat(e.target.value) * getDuration())
@@ -49,10 +52,7 @@ export default function Player({
 
       {/* Controls overlay: control mode only */}
       {mode === 'control' && (
-        <div
-          className={styles.controlsOverlay}
-          onClick={() => onModeChange('view')}
-        >
+        <div className={styles.controlsOverlay} onClick={() => onModeChange('view')}>
           <button
             className={styles.playPauseCenterBtn}
             onClick={(e) => {
@@ -64,10 +64,7 @@ export default function Player({
             {isPlaying ? '⏸' : '▶'}
           </button>
 
-          <div
-            className={styles.controlsBar}
-            onClick={(e) => e.stopPropagation()}
-          >
+          <div className={styles.controlsBar} onClick={(e) => e.stopPropagation()}>
             <div className={styles.controlsRow}>
               <input
                 ref={(el) => {
