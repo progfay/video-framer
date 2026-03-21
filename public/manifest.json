@@ -19,7 +19,7 @@
   "theme_color": "#dddddd",
   "background_color": "#dddddd",
   "scope": "/video-framer/",
-  "display": "standalone",
+  "display": "fullscreen",
   "orientation": "portrait",
   "share_target": {
     "action": "/video-framer/",
