@@ -16,19 +16,6 @@
       "type": "image/png"
     }
   ],
-  "share_target": {
-    "action": "/video-framer/share",
-    "method": "POST",
-    "enctype": "multipart/form-data",
-    "params": {
-      "files": [
-        {
-          "name": "file",
-          "accept": ["video/*"]
-        }
-      ]
-    }
-  },
   "theme_color": "#dddddd",
   "background_color": "#dddddd",
   "display": "standalone",
