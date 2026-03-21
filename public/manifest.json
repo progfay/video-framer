@@ -18,6 +18,7 @@
   ],
   "theme_color": "#dddddd",
   "background_color": "#dddddd",
+  "scope": "/video-framer/",
   "display": "standalone",
   "orientation": "portrait",
   "share_target": {
