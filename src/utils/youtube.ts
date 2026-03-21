@@ -1,4 +1,5 @@
 export const VIDEO_URL_PARAM = 'url'
+export const VIDEO_TEXT_PARAM = 'text'
 
 export const PlayerState = {
   ENDED: 0,

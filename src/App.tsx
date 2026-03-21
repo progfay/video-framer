@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import UrlInput from './components/UrlInput'
 import Player, { type Mode } from './components/Player'
-import { isYouTubeUrl, PlayerState, VIDEO_URL_PARAM } from './utils/youtube'
+import { isYouTubeUrl, PlayerState, VIDEO_TEXT_PARAM, VIDEO_URL_PARAM } from './utils/youtube'
 
 export default function App() {
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
@@ -9,11 +9,13 @@ export default function App() {
   const [fps, setFps] = useState<30 | 60>(30)
   const [isPlaying, setIsPlaying] = useState(false)
 
-  // Read ?url= from query params on mount
+  // Read query params on mount (Web Share Target sends url, text, title)
   useEffect(() => {
     const params = new URLSearchParams(location.search)
-    const url = params.get(VIDEO_URL_PARAM)
-    if (url && isYouTubeUrl(url)) {
+    const url = [params.get(VIDEO_URL_PARAM), params.get(VIDEO_TEXT_PARAM)].find(
+      (v) => v !== null && isYouTubeUrl(v),
+    )
+    if (url) {
       setVideoUrl(url)
     }
   }, [])
