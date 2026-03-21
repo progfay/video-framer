@@ -25,7 +25,7 @@ interface YTPlayer {
   seekTo(seconds: number, allowSeekAhead: boolean): void
   getCurrentTime(): number
   getDuration(): number
-  loadVideoById(videoId: string): void
+  cueVideoById(videoId: string): void
   destroy(): void
 }
 
@@ -70,7 +70,7 @@ export function useYouTubePlayer(options: UseYouTubePlayerOptions) {
         onReady: () => {
           playerRef.current = ytPlayer
           const videoId = extractVideoId(videoUrl)
-          if (videoId) playerRef.current.loadVideoById(videoId)
+          if (videoId) playerRef.current.cueVideoById(videoId)
         },
         onStateChange: (e) => {
           onStateChange(e.data)
@@ -90,7 +90,7 @@ export function useYouTubePlayer(options: UseYouTubePlayerOptions) {
   useEffect(() => {
     if (!playerRef.current) return
     const videoId = extractVideoId(videoUrl)
-    if (videoId) playerRef.current.loadVideoById(videoId)
+    if (videoId) playerRef.current.cueVideoById(videoId)
   }, [videoUrl])
 
   function play() {
