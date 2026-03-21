@@ -57,7 +57,8 @@ export default function Player({
             className={styles.playPauseCenterBtn}
             onClick={(e) => {
               e.stopPropagation()
-              isPlaying ? pause() : play()
+              if (isPlaying) pause()
+              else play()
             }}
           >
             {isPlaying ? '⏸' : '▶'}
@@ -71,10 +72,11 @@ export default function Player({
               <input
                 ref={(el) => {
                   if (!el) return
+                  const inputEl = el
                   let rafId: number
                   function loop() {
                     const dur = getDuration()
-                    if (dur > 0) el.value = String(getCurrentTime() / dur)
+                    if (dur > 0) inputEl.value = String(getCurrentTime() / dur)
                     rafId = requestAnimationFrame(loop)
                   }
                   rafId = requestAnimationFrame(loop)

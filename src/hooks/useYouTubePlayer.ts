@@ -124,7 +124,7 @@ export function useYouTubePlayer(options: UseYouTubePlayerOptions) {
     player.seekTo(target, true)
 
     function poll() {
-      if (player.getCurrentTime() !== before) return
+      if (!player || player.getCurrentTime() !== before) return
       requestAnimationFrame(poll)
     }
     requestAnimationFrame(poll)
