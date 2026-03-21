@@ -19,5 +19,12 @@
   "theme_color": "#dddddd",
   "background_color": "#dddddd",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "share_target": {
+    "action": "/video-framer/",
+    "method": "GET",
+    "params": {
+      "url": "url"
+    }
+  }
 }
