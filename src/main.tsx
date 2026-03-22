@@ -4,7 +4,7 @@ import './index.css'
 import App from './App'
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/video-framer/sw.js')
+  void navigator.serviceWorker.register('/video-framer/sw.js')
 }
 
 const rootEl = document.getElementById('root')
