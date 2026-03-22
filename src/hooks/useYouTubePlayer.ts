@@ -122,12 +122,6 @@ export function useYouTubePlayer(options: UseYouTubePlayerOptions) {
     const before = player.getCurrentTime()
     const target = Math.max(0, before + direction * (1 / fps))
     player.seekTo(target, true)
-
-    function poll() {
-      if (!player || player.getCurrentTime() !== before) return
-      requestAnimationFrame(poll)
-    }
-    requestAnimationFrame(poll)
   }
 
   return { play, pause, seekTo, stepFrame, getCurrentTime, getDuration }
