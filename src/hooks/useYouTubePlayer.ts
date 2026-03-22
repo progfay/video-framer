@@ -45,7 +45,7 @@ export function useYouTubePlayer(options: UseYouTubePlayerOptions) {
 
   // Register onYouTubeIframeAPIReady (script is loaded via index.html)
   useEffect(() => {
-    console.assert(window.YT != null, 'YouTube IFrame API not found')
+    if (!window.YT) throw new Error('YouTube IFrame API not found')
     if (window.YT.Player) {
       setApiReady(true)
       return
