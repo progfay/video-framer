@@ -1,4 +1,4 @@
-import { isYouTubeUrl } from '../utils/youtube'
+import { extractVideoId } from '../utils/youtube'
 import styles from './UrlInput.module.css'
 
 interface UrlInputProps {
@@ -12,7 +12,7 @@ export default function UrlInput({ onSubmit }: UrlInputProps) {
     if (!(input instanceof HTMLInputElement)) {
       return
     }
-    if (isYouTubeUrl(input.value)) {
+    if (extractVideoId(input.value) !== null) {
       onSubmit(input.value.trim())
     } else {
       input.setCustomValidity('Invalid YouTube URL')

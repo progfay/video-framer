@@ -9,31 +9,24 @@ export const PlayerState = {
   CUED: 5,
 } as const
 
-export function isYouTubeUrl(input: string): boolean {
-  try {
-    const url = new URL(input.trim())
-    const host = url.hostname.replace(/^(www|m)\./, '')
-    return host === 'youtube.com' || host === 'youtu.be'
-  } catch {
-    return false
-  }
+function parseYouTubeUrl(input: string): { url: URL; host: string } {
+  const url = new URL(input.trim())
+  const host = url.hostname.replace(/^(www|m)\./, '')
+  if (host !== 'youtube.com' && host !== 'youtu.be') throw new Error(`Not a YouTube URL: ${input}`)
+  return { url, host }
 }
 
 export function extractVideoId(input: string): string | null {
   try {
-    const url = new URL(input.trim())
-    const host = url.hostname.replace(/^(www|m)\./, '')
+    const { url, host } = parseYouTubeUrl(input)
     if (host === 'youtu.be') {
       const id = url.pathname.slice(1).split('/')[0]
       return /^[\w-]{11}$/.test(id) ? id : null
     }
-    if (host === 'youtube.com') {
-      if (url.pathname === '/watch') return url.searchParams.get('v')
-      const m = url.pathname.match(/^\/(embed|shorts|v)\/([\w-]{11})/)
-      return m ? m[2] : null
-    }
+    if (url.pathname === '/watch') return url.searchParams.get('v')
+    const m = url.pathname.match(/^\/(embed|shorts|v)\/([\w-]{11})/)
+    return m ? m[2] : null
   } catch {
-    // not a valid URL
+    return null
   }
-  return null
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import UrlInput from './components/UrlInput'
 import Player, { type Mode } from './components/Player'
-import { isYouTubeUrl, PlayerState, VIDEO_TEXT_PARAM, VIDEO_URL_PARAM } from './utils/youtube'
+import { extractVideoId, PlayerState, VIDEO_TEXT_PARAM, VIDEO_URL_PARAM } from './utils/youtube'
 
 export default function App() {
   const [videoUrl, setVideoUrl] = useState<string | null>(null)
@@ -13,7 +13,7 @@ export default function App() {
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const url = [params.get(VIDEO_URL_PARAM), params.get(VIDEO_TEXT_PARAM)].find(
-      (v) => v !== null && isYouTubeUrl(v),
+      (v) => v !== null && extractVideoId(v) !== null,
     )
     if (url) {
       setVideoUrl(url)
